@@ -1,0 +1,28 @@
+[package]
+name = "qrust"
+version = "0.6.91-borrow-checker-architecture-validation-preview.1.fix.1"
+edition = "2024"
+description = "Experimental quantum compiler with OpenQASM 3, QCU output, local simulation, and restricted Rust-inspired ownership checks"
+readme = "README.md"
+publish = false
+license = "MIT"
+
+[features]
+alloc-profile = []
+
+[dependencies]
+
+[profile.maxspeed]
+inherits = "release"
+lto = "thin"
+codegen-units = 1
+
+[profile.compact]
+inherits = "release"
+opt-level = "z"
+lto = "fat"
+codegen-units = 1
+strip = "symbols"
+panic = "abort"
+debug = 0
+incremental = false

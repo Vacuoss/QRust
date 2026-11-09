@@ -1,0 +1,14 @@
+fn pulse(q: &mut Qubit, theta: Float) {
+    h(q);
+    rz(theta, q);
+}
+
+fn main() {
+    let q = qubit();
+    let mut i: Float = 0;
+    while i < 20 {
+        pulse(&mut q, i * pi / 10);
+        i = i + 1;
+    }
+    let result = measure(q);
+}

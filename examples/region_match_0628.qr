@@ -1,0 +1,13 @@
+fn identity<'a>(x: &'a i64) -> &'a i64 { x }
+fn forward<'a>(x: &'a i64) -> &'a i64 { identity(x) }
+fn choose<'a>(c: bool, left: &'a i64, right: &'a i64) -> &'a i64 {
+    match c { true => { left }, false => { right } }
+}
+fn main() {
+    let a: i64 = 3;
+    let b: i64 = 8;
+    let selected = choose(false, &a, &b);
+    let forwarded = forward(selected);
+    let q = qubit();
+    rx(*forwarded, q);
+}

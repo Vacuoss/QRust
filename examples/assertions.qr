@@ -1,0 +1,18 @@
+fn prep(q: &mut Qubit, theta: Float) {
+    static_assert(theta >= 0);
+    h(q);
+    rz(theta, q);
+}
+
+fn main() {
+    const angle = pi / 4;
+    static_assert(angle > 0 && angle < pi);
+    static_assert_eq(2 * 2, 4);
+    static_assert_ne(false, true);
+    let reg = qubits(2);
+    static_assert_distinct(reg[0], reg[1]);
+    prep(&mut reg[0], angle);
+    cx(reg[0], reg[1]);
+    let a = measure(reg[0]);
+    let b = measure(reg[1]);
+}

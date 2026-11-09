@@ -1,0 +1,10 @@
+//Expected error: two mutable borrows of q in the same call
+fn pair(a: &mut Qubit, b: &mut Qubit) {
+    cx(a, b);
+}
+fn main() {
+    let q = qubit();
+    for i in 0..3 {
+        pair(&mut q, &mut q);
+    }
+}

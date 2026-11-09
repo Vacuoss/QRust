@@ -1,0 +1,7 @@
+//The index affects gate angles: every iteration must be checked separately
+fn pulse(q: &mut Qubit, theta: Float) { rx(theta, q); rz(theta / 2, q); }
+fn main() {
+    let q = qubit();
+    for i in 0..1000 { pulse(&mut q, i * pi / 1000); }
+    let result = measure(q);
+}

@@ -1,0 +1,9 @@
+struct Blob{n:i64} struct Tri{a:Blob,b:Blob}
+fn probe(flag:bool){
+    let t:Tri=Tri{a:Blob{n:1},b:Blob{n:2}};
+    let r=if flag{&t.a}else{&t.b};
+    let moved:Blob=t.a;
+    let observed:i64=r.n;
+    let from_moved:i64=moved.n;
+}
+fn main(){probe(true);probe(false);}

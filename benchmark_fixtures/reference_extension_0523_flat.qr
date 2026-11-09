@@ -1,0 +1,5 @@
+fn main() {
+    let q = qubit();
+    rx(5, q);
+    ry(5, q);
+}

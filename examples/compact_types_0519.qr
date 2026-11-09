@@ -1,0 +1,22 @@
+struct Settings { angle: i64, enabled: bool, offset: i64 }
+enum Axis { X, Y, Z }
+
+fn twice(x: i64) -> i64 { x * 2 }
+
+impl Settings {
+    fn get_angle(self) -> i64 { self.angle }
+}
+
+fn main() {
+    let settings: Settings = Settings { offset: 1, enabled: true, angle: 3 };
+    let axis: Axis = Axis::Y;
+    let q = qubit();
+    if settings.enabled {
+        rz(settings.angle + settings.offset, q);
+    }
+    match axis {
+        Axis::X => { x(q); },
+        Axis::Y => { h(q); },
+        Axis::Z => { z(q); },
+    }
+}

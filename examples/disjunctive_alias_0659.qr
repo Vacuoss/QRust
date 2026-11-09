@@ -1,0 +1,13 @@
+struct Blob { n:i64 }
+struct Tri { a:Blob, b:Blob, c:Blob }
+fn inspect(x:&Blob) { let n:i64=x.n; }
+fn relay(x:&Blob) { inspect(x); }
+fn main() {
+    let t:Tri=Tri{a:Blob{n:1},b:Blob{n:2},c:Blob{n:3}};
+    let r=if true { &t.a } else { &t.b };
+    let unrelated:Blob=t.c;
+    relay(r);
+    let q=qubit();
+    rx(r.n,q);
+    ry(unrelated.n,q);
+}

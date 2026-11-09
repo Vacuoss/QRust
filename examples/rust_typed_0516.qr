@@ -1,0 +1,30 @@
+struct Pulse { angle: i64, enabled: bool }
+
+enum Axis { X, Y, Z }
+
+fn twice(x: i64) -> i64 {
+    return x * 2;
+}
+
+fn plus<T>(x: T, y: T) -> T {
+    x + y
+}
+
+impl Pulse {
+    fn get_angle(self) -> i64 {
+        self.angle
+    }
+}
+
+fn main() {
+    let p: Pulse = Pulse { angle: 3, enabled: true };
+    let copied: i64 = twice(2);
+    let maximum: u64 = 18446744073709551615;
+    static_assert_eq(maximum, 18446744073709551615);
+    let axis: Axis = Axis::Y;
+    let second: Axis = axis;
+    static_assert_eq(second, Axis::Y);
+    let q = qubit();
+    rz(plus(copied, p.get_angle()), q);
+    h(q);
+}

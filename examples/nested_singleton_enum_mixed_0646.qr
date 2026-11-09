@@ -1,0 +1,18 @@
+struct Payload { n: i64 }
+enum Inner { Pair(Payload, i64) }
+enum Outer { Data(Inner, Payload), None }
+
+fn main() {
+    let a: Payload = Payload { n: 4 };
+    let b: Payload = Payload { n: 6 };
+    let inner: Inner = Inner::Pair(a, 2);
+    let mut outer: Outer = Outer::Data(inner, b);
+    let q = qubit();
+    match outer {
+        Outer::Data(Inner::Pair(moved, ref mut value), ref sibling) => {
+            *value = 8;
+            rx(moved.n + sibling.n, q);
+        },
+        Outer::None => {}
+    }
+}

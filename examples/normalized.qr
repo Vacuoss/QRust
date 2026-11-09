@@ -1,0 +1,18 @@
+const theta: Float = radians(45);
+const good: Bool = (theta > 0 && theta < pi) || false;
+let a: Qubit = qubit();
+let b: Qubit = qubit();
+let c: Qubit = qubit();
+
+h(a);
+ry(theta, b);
+cry(theta, a, b);
+rxx(theta / 2, a, b);
+ryy(theta / 2, b, c);
+rzz(theta / 2, a, c);
+cnot(a, b);
+let readout: Bit = measure(a);
+measure_keep(b);
+reset(b);
+let other = measure(b);
+let last = measure(c);

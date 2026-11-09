@@ -1,0 +1,10 @@
+fn pulse(q: &mut Qubit) { h(q); }
+fn main() {
+    let q = qubit();
+    let result = measure(q);
+    let mut i = 0;
+    while i < 2 {
+        pulse(&mut q);
+        i = i + 1;
+    }
+}

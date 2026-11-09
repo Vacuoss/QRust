@@ -1,0 +1,37 @@
+struct Payload {
+    n: i64,
+    m: i64
+}
+
+enum Inner {
+    Data(Payload),
+    Empty
+}
+
+enum Outer {
+    Wrap(Inner),
+    Other
+}
+
+fn main() {
+    let p: Payload = Payload { n: 17, m: 3 };
+    let inner: Inner = Inner::Data(p);
+    let mut outer: Outer = Outer::Wrap(inner);
+    let q = qubit();
+
+    match &mut outer {
+        Outer::Wrap(Inner::Data(Payload { n: ref mut x, m: _ })) => {
+            *x = 21;
+        },
+        _ => {}
+    }
+
+    match outer {
+        Outer::Wrap(Inner::Data(Payload { n: value, m: _ })) => {
+            rx(value, q);
+        },
+        _ => {
+            rx(0, q);
+        }
+    }
+}

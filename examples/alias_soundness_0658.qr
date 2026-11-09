@@ -1,0 +1,19 @@
+struct Blob { n: i64 }
+struct Pair { left: Blob, right: Blob }
+
+fn inspect(x: &Blob) {
+    let n: i64 = x.n;
+}
+
+fn relay(x: &Blob) {
+    inspect(x);
+}
+
+fn main() {
+    let p: Pair = Pair { left: Blob{n:1}, right: Blob{n:3} };
+    let r = if true { &p.left } else { &p.left };
+    relay(r);
+    let spare: Blob = p.right;
+    let q = qubit();
+    rx(spare.n, q);
+}

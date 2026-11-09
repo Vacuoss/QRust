@@ -1,0 +1,4 @@
+let big: u64 = 18446744073709551615;
+static_assert_eq(big, 18446744073709551615);
+let q = qubit();
+h(q);

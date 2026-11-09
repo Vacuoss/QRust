@@ -1,0 +1,5 @@
+fn main() {
+    let q = qubit();
+    let b = measure_keep(q);
+    if b { let m = measure(q); }
+}

@@ -1,0 +1,8 @@
+fn probe(flag:bool){
+    let mut n:i64=3;
+    let r=&n;
+    if flag{let observed:i64=*r;}else{}
+    n=8;
+    let after:i64=n;
+}
+fn main(){probe(true);probe(false);}

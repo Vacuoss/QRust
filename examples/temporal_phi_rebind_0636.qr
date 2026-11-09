@@ -1,0 +1,17 @@
+fn main() {
+    let mut a: i64 = 1;
+    let mut b: i64 = 2;
+    let mut c: i64 = 3;
+    let mut r = &mut a;
+
+    if true {
+        r = &mut b;
+    } else {
+        r = &mut c;
+    }
+    r = &mut a;
+    *r = 11;
+
+    let q = qubit();
+    rz(*r, q);
+}

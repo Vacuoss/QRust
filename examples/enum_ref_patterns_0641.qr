@@ -1,0 +1,23 @@
+struct Sample { n: i64, offset: i64 }
+enum Measurement { Ready(Sample), Skipped }
+
+fn main() {
+    let value: Sample = Sample { n: 4, offset: 2 };
+    let mut data: Measurement = Measurement::Ready(value);
+    let q = qubit();
+
+    match &mut data {
+        Measurement::Ready(ref mut sample) => { sample.n = 9; },
+        Measurement::Skipped => {}
+    }
+
+    match &data {
+        Measurement::Ready(ref sample) => { rx(sample.n + sample.offset, q); },
+        Measurement::Skipped => {}
+    }
+
+    match data {
+        Measurement::Ready(sample) => { ry(sample.n, q); },
+        Measurement::Skipped => {}
+    }
+}

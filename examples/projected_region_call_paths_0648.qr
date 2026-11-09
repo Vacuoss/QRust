@@ -1,0 +1,16 @@
+struct Pair { left: i64, right: i64 }
+
+fn choose<'a>(flag: bool, pair: &'a Pair) -> &'a i64 {
+    if flag { &pair.left } else { &pair.right }
+}
+
+fn forward<'a>(flag: bool, pair: &'a Pair) -> &'a i64 {
+    choose(flag, pair)
+}
+
+fn main() {
+    let pair: Pair = Pair { left: 13, right: 21 };
+    let chosen = forward(false, &pair);
+    let q = qubit();
+    rx(*chosen, q);
+}

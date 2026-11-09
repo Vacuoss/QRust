@@ -1,0 +1,12 @@
+fn main() {
+    let mut first: i64 = 2;
+    let mut second: i64 = 7;
+    let mut reference = &mut first;
+    reference = &mut second;
+    *reference = 11;
+    let moved = reference;
+    *moved = 13;
+
+    let q = qubit();
+    rx(*moved, q);
+}

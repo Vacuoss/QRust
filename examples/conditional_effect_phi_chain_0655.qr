@@ -1,0 +1,35 @@
+struct Blob { n: i64 }
+struct Tri { a: Blob, b: Blob, c: Blob }
+
+fn select<'a>(flag: bool, t: &'a mut Tri) -> &'a mut Blob {
+    if flag { &mut t.a } else { &mut t.b }
+}
+
+fn change_c(t: &mut Tri) {
+    t.c.n = 13;
+}
+
+fn conditional<'a>(flag: bool, alt: bool, t: &'a mut Tri) -> &'a mut Blob {
+    if flag {
+        change_c(t);
+    } else if alt {
+        t.c.n = 14;
+    } else {
+        t.c.n = 15;
+    }
+    select(flag, t)
+}
+
+fn forward<'a>(flag: bool, alt: bool, t: &'a mut Tri) -> &'a mut Blob {
+    conditional(flag, alt, t)
+}
+
+fn main() {
+    let mut t: Tri = Tri {a: Blob{n:1}, b: Blob{n:2}, c: Blob{n:3}};
+    let r = forward(false, true, &mut t);
+    let spare: Blob = t.c;
+    *r = Blob{n:8};
+    let q = qubit();
+    rx(r.n, q);
+    ry(spare.n, q);
+}

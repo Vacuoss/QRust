@@ -1,0 +1,43 @@
+let control = qubit();
+let target = qubit();
+let ancilla = qubit();
+let angle = pi / 4;
+
+h(control);
+x(target);
+y(ancilla);
+z(target);
+s(control);
+sdg(control);
+t(control);
+tdg(control);
+sx(target);
+id(target);
+
+rx(angle, target);
+ry(-pi / 2, target);
+rz(sin(pi / 6), ancilla);
+p(2 * angle, control);
+u(pi / 2, 0, pi, target);
+gphase(pi / 8);
+
+cx(control, target);
+cy(control, target);
+cz(control, target);
+ch(control, target);
+swap(target, ancilla);
+cp(pi / 3, control, ancilla);
+crx(pi / 4, control, ancilla);
+cry(pi / 4, control, target);
+crz(pi / 4, control, target);
+cu(pi / 2, 0, pi, pi / 8, control, ancilla);
+ccx(control, target, ancilla);
+cswap(control, target, ancilla);
+
+barrier(control, target, ancilla);
+let interim = measure_keep(target);
+reset(target);
+h(target);
+let c0 = measure(control);
+let c1 = measure(target);
+let c2 = measure(ancilla);

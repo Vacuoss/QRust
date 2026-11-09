@@ -1,0 +1,72 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "QRust: Build (release)",
+      "type": "process",
+      "command": "cargo",
+      "args": [
+        "build",
+        "--release"
+      ],
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "QRust: Check current file",
+      "type": "process",
+      "command": "cargo",
+      "args": [
+        "run",
+        "--release",
+        "--",
+        "check",
+        "${file}"
+      ],
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "QRust: Run current file",
+      "type": "process",
+      "command": "cargo",
+      "args": [
+        "run",
+        "--release",
+        "--",
+        "run",
+        "${file}"
+      ],
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "QRust: Check host source",
+      "type": "process",
+      "command": "cargo",
+      "args": [
+        "run",
+        "--release",
+        "--",
+        "check-host",
+        "${file}"
+      ],
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "QRust: Export QCU",
+      "type": "process",
+      "command": "cargo",
+      "args": [
+        "run",
+        "--release",
+        "--",
+        "build-qcu",
+        "${file}"
+      ],
+      "group": "build",
+      "problemMatcher": []
+    }
+  ]
+}

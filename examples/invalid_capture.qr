@@ -1,0 +1,7 @@
+//Expected error: angle is not declared in the scope of rotate
+const angle = pi / 4;
+fn rotate(q: &mut Qubit) {
+    rz(angle, q);
+}
+let q = qubit();
+rotate(&mut q);

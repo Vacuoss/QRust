@@ -1,0 +1,24 @@
+struct P { n: i64 }
+enum Event { Empty, Single(P), Triple(P, P, i64) }
+
+fn main() {
+    let a: P = P { n: 2 };
+    let b: P = P { n: 3 };
+    let mut event: Event = Event::Triple(a, b, 4);
+    let q = qubit();
+    match event {
+        Event::Triple(first, ref second, ref mut angle) => {
+            rx(first.n + second.n, q);
+            *angle = 7;
+        },
+        Event::Single(_) => {},
+        Event::Empty => {}
+    }
+    match event {
+        Event::Triple(_, remaining, angle) => {
+            ry(remaining.n + angle, q);
+        },
+        Event::Single(_) => {},
+        Event::Empty => {}
+    }
+}

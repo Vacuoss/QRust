@@ -1,0 +1,14 @@
+enum Mode { Idle, Running, Paused }
+
+fn main() {
+    let can_run: bool = false;
+    let mode: Mode = Mode::Running;
+    let q = qubit();
+
+    match mode {
+        Mode::Running if can_run => { rx(1, q); },
+        Mode::Running => { ry(2, q); },
+        Mode::Idle => { h(q); },
+        Mode::Paused => { x(q); }
+    }
+}

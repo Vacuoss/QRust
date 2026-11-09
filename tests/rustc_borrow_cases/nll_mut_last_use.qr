@@ -1,0 +1,1 @@
+fn main(){let mut n:i64=1;let r=&mut n;*r=8;let q=qubit();rx(*r,q);n=9;let q2=qubit();ry(n,q2);}

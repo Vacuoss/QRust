@@ -1,0 +1,5 @@
+let q = qubit();
+h(q);
+let a = measure_keep(q);
+reset(q);
+let b = measure(q);

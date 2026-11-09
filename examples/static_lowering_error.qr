@@ -1,0 +1,8 @@
+//Expected error: an integer is passed to a Bool parameter
+fn flip(q: &mut Qubit, enabled: Bool) {
+    if enabled { x(q); }
+}
+fn main() {
+    let q = qubit();
+    flip(&mut q, 42);
+}

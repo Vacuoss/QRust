@@ -1,0 +1,7 @@
+fn main() {
+    let q = qubit();
+    let bit = measure_keep(q);
+    while bit {
+        h(q);
+    }
+}

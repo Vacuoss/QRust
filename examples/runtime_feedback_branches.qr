@@ -1,0 +1,20 @@
+fn main() {
+    let q = qubit();
+    let r = qubit();
+    h(q);
+    let mut feedback = measure_keep(q);
+    let selector = measure_keep(r);
+    while feedback {
+        if selector {
+            reset(q);
+            h(q);
+            measure_into(feedback, q);
+        } else {
+            reset(q);
+            h(q);
+            z(q);
+            measure_into(feedback, q);
+        }
+    }
+    let done = measure(q);
+}

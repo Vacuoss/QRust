@@ -1,0 +1,19 @@
+fn main() {
+    let q = qubit();
+    let mut value: i64 = 0;
+    for i in 0..3 {
+        let reference = &mut value;
+        *reference += i;
+    }
+    rx(value, q);
+    let mut count: i64 = 0;
+    while count < 2 {
+        let reference = &value;
+        ry(*reference, q);
+        count += 1;
+    }
+    loop {
+        rz(value, q);
+        break;
+    }
+}

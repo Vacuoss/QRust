@@ -1,0 +1,13 @@
+fn relay(x: &mut i64) -> &mut i64 { x }
+fn main() {
+    let mut n: i64 = 3;
+    let r: &mut i64 = &mut n;
+    let a: &i64 = &*r;
+    let b: &i64 = &*r;
+    let q = qubit();
+    rx(*a + *b, q);
+    let s: &mut i64 = relay(r);
+    *s = 9;
+    ry(*s, q);
+    rz(n, q);
+}

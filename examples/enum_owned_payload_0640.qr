@@ -1,0 +1,23 @@
+struct Payload { n: i64 }
+
+enum Route {
+    One(Payload),
+    Two(Payload, Payload),
+    None
+}
+
+fn main() {
+    let first: Payload = Payload { n: 7 };
+    let second: Payload = Payload { n: 5 };
+    let route: Route = Route::Two(first, second);
+    let mut total: i64 = 0;
+
+    match route {
+        Route::One(value) => { total = value.n; },
+        Route::Two(left, right) => { total = left.n + right.n; },
+        Route::None => { total = 0; }
+    }
+
+    let q = qubit();
+    rx(total, q);
+}

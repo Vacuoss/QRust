@@ -1,0 +1,12 @@
+fn forward(x: &mut i64) -> &mut i64 {
+    x
+}
+
+fn main() {
+    let mut n: i64 = 3;
+    let r = &mut n;
+    let s = forward(r);
+    *s = 10;
+    let q = qubit();
+    rx(*s, q);
+}

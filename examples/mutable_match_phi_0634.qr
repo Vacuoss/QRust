@@ -1,0 +1,15 @@
+fn main() {
+    let mut first: i64 = 1;
+    let mut second: i64 = 2;
+    let mut third: i64 = 3;
+    let mut reference = &mut first;
+
+    match false {
+        true => { reference = &mut second; },
+        false => { reference = &mut third; }
+    }
+
+    *reference = 11;
+    let q = qubit();
+    rz(*reference, q);
+}

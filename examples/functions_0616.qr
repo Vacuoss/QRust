@@ -1,0 +1,10 @@
+fn flip(q:Qubit)->Qubit { h(q); return q; }
+fn apply_x(r:&mut Qubit) { x(r); }
+fn pass<'a>(r:&'a mut Qubit)->&'a mut Qubit { return r; }
+fn main() {
+    let mut q=flip(qubit());
+    apply_x(&mut q);
+    let r=pass(&mut q);
+    h(r);
+    println!("measurement: {}",measure(q));
+}

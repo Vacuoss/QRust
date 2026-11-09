@@ -1,0 +1,10 @@
+struct Pulse { angle: i64, enabled: bool }
+enum Axis { X, Y, Z }
+fn twice(x: i64) -> i64 { let y: i64 = x * 2; return y; }
+fn main() {
+    let p: Pulse = Pulse { angle: 4, enabled: true };
+    let axis: Axis = Axis::Y;
+    let q = qubit();
+    if false { x(q); } else if p.enabled { rz(twice(p.angle), q); }
+    match axis { Axis::X => { x(q); }, Axis::Y => { h(q); }, Axis::Z => { z(q); } }
+}

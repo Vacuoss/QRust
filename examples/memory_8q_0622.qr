@@ -1,0 +1,26 @@
+let q0 = qubit();
+let q1 = qubit();
+let q2 = qubit();
+let q3 = qubit();
+let q4 = qubit();
+let q5 = qubit();
+let q6 = qubit();
+let q7 = qubit();
+
+h(q0);
+cx(q0, q1);
+cx(q1, q2);
+cx(q2, q3);
+cx(q3, q4);
+cx(q4, q5);
+cx(q5, q6);
+cx(q6, q7);
+
+let b0 = measure(q0);
+let b1 = measure(q1);
+let b2 = measure(q2);
+let b3 = measure(q3);
+let b4 = measure(q4);
+let b5 = measure(q5);
+let b6 = measure(q6);
+let b7 = measure(q7);

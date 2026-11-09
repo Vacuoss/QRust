@@ -1,0 +1,15 @@
+fn rotate(q: &mut Qubit, angle: Float) {
+    static_assert(angle > 0);
+    rz(angle, q);
+    static_assert_live(q);
+}
+fn main() {
+    let reg = qubits(2);
+    static_assert_live(reg[0]);
+    static_assert_distinct(reg[0], reg[1]);
+    rotate(&mut reg[0], pi / 4);
+    cx(reg[0], reg[1]);
+    let a = measure(reg[0]);
+    static_assert_live(reg[1]);
+    let b = measure(reg[1]);
+}

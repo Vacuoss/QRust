@@ -1,0 +1,12 @@
+fn rotate(q: &mut Qubit, angle: Float) {
+    rx(angle, q);
+    rz(angle / 2, q);
+}
+fn main() {
+    let q = qubit();
+    let scale = pi / 1000;
+    for i in 0..1000 {
+        rotate(&mut q, i * scale);
+    }
+    let final_bit = measure(q);
+}

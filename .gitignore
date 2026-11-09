@@ -1,0 +1,12 @@
+/target/
+**/__pycache__/
+*.py[cod]
+*.qasm
+*.qcu
+*.rmeta
+*.profraw
+*.profdata
+*.log
+.DS_Store
+Thumbs.db
+.vscode/*.code-workspace

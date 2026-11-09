@@ -1,0 +1,2 @@
+enum Axis { X, Y }
+fn main(){ let a: Axis = Axis::X; match a { Axis::X => {}, Axis::Y => {} } static_assert_eq(a,Axis::X); }

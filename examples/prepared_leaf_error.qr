@@ -1,0 +1,8 @@
+//Expected error: two mutable borrows of q in the same call
+fn entangle(a: &mut Qubit, b: &mut Qubit) {
+    cx(a, b);
+}
+fn main() {
+    let q = qubit();
+    entangle(&mut q, &mut q);
+}

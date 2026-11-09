@@ -1,0 +1,19 @@
+struct Blob { n: i64 }
+struct Pair { left: Blob, right: Blob }
+
+fn get<'a>(p: &'a Pair) -> &'a Blob {
+    &p.left
+}
+
+fn forward<'a>(p: &'a Pair) -> &'a Blob {
+    get(p)
+}
+
+fn main() {
+    let p: Pair = Pair { left: Blob { n: 3 }, right: Blob { n: 4 } };
+    let r = forward(&p);
+    let other: Blob = p.right;
+    let q = qubit();
+    rx(r.n, q);
+    ry(other.n, q);
+}

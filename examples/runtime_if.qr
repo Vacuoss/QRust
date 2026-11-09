@@ -1,0 +1,12 @@
+fn main() {
+    let q = qubit();
+    h(q);
+    let bit = measure_keep(q);
+    if bit {
+        x(q);
+        rz(pi / 2, q);
+    } else {
+        z(q);
+    }
+    let done = measure(q);
+}

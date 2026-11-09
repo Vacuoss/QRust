@@ -1,0 +1,19 @@
+fn choose<T, U>(left: T, _right: U) -> T {
+    left
+}
+
+fn checked<T: Copy + PartialEq>(value: T) -> T {
+    value
+}
+
+fn keep<'a, T>(reference: &'a T) -> &'a T {
+    reference
+}
+
+fn main() {
+    let angle: i64 = 11;
+    let view = keep(&angle);
+    let q = qubit();
+    rx(checked(*view), q);
+    ry(choose(4, true), q);
+}

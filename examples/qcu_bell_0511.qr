@@ -1,0 +1,6 @@
+let a = qubit();
+let b = qubit();
+h(a);
+cx(a, b);
+let x = measure(a);
+let y = measure(b);

@@ -1,0 +1,29 @@
+struct Blob { n: i64 }
+struct Tri { a: Blob, b: Blob, c: Blob }
+
+fn loop_write(t: &mut Tri) {
+    let mut i: i64 = 0;
+    while i < 2 {
+        t.c.n = 11;
+        i += 1;
+    }
+}
+
+fn select<'a>(flag: bool, t: &'a mut Tri) -> &'a mut Blob {
+    if flag { &mut t.a } else { &mut t.b }
+}
+
+fn relay<'a>(flag: bool, t: &'a mut Tri) -> &'a mut Blob {
+    loop_write(t);
+    select(flag, t)
+}
+
+fn main() {
+    let mut t: Tri = Tri {a: Blob{n:1}, b: Blob{n:2}, c: Blob{n:3}};
+    let r = relay(true, &mut t);
+    let spare: Blob = t.c;
+    *r = Blob{n:12};
+    let q = qubit();
+    rx(r.n, q);
+    ry(spare.n, q);
+}

@@ -1,0 +1,7 @@
+//Expected error: break appears outside a loop in invalid
+fn invalid() { break; }
+fn main() {
+    let q = qubit();
+    for i in 0..3 { invalid(); }
+    let result = measure(q);
+}

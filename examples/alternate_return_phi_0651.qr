@@ -1,0 +1,13 @@
+struct Blob { n:i64 }
+struct Tri { a:Blob, b:Blob, c:Blob }
+fn pick<'a>(flag:bool,t:&'a Tri)->&'a Blob {
+    if flag { &t.a } else { &t.b }
+}
+fn main() {
+    let t:Tri=Tri{a:Blob{n:2},b:Blob{n:4},c:Blob{n:6}};
+    let r=pick(true,&t);
+    let spare:Blob=t.c;
+    let q=qubit();
+    rx(r.n,q);
+    ry(spare.n,q);
+}

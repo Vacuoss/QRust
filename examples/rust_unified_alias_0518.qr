@@ -1,0 +1,2 @@
+enum Axis { X, Y }
+fn main(){ let a: Axis = Axis::Y; let q=qubit(); match a {Axis::X=>{h(q);},Axis::Y=>{cx(q,q);} } }

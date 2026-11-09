@@ -1,0 +1,8 @@
+fn main() {
+    let q = qubit();
+    let mut feedback = measure_keep(q);
+    while feedback {
+        let consumed = measure(q);
+        measure_into(feedback, q);
+    }
+}

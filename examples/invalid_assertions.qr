@@ -1,0 +1,3 @@
+//Expected error: static_assert_distinct receives the same register element twice
+let r = qubits(2);
+static_assert_distinct(r[0], r[0]);

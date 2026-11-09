@@ -1,0 +1,20 @@
+enum Mode { Alpha, Beta, Gamma }
+
+fn main() {
+    let mut a: i64 = 3;
+    let mut b: i64 = 8;
+    let mut c: i64 = 13;
+    let mut chosen = &mut a;
+    let mode: Mode = Mode::Beta;
+
+    match mode {
+        Mode::Alpha => { chosen = &mut a; },
+        Mode::Beta  => { chosen = &mut b; },
+        Mode::Gamma => { chosen = &mut c; }
+    }
+
+    *chosen = 21;
+    let angle = *chosen;
+    let q = qubit();
+    rx(angle, q);
+}

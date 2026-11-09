@@ -1,0 +1,16 @@
+//Designed to exercise repeated function lowering without hardware access
+fn pulse(q: &mut Qubit, theta: Float) {
+    h(q);
+    rx(theta, q);
+    x(q);
+    rz(theta / 2, q);
+    h(q);
+    ry(theta, q);
+}
+fn main() {
+    let q = qubit();
+    for i in 0..500 {
+        pulse(&mut q, pi / 4);
+    }
+    let result = measure(q);
+}

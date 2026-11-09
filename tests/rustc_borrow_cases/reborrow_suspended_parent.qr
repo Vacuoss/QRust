@@ -1,0 +1,1 @@
+fn main(){let mut n:i64=1;let a=&mut n;let b=&mut *a;*a=2;*b=3;}

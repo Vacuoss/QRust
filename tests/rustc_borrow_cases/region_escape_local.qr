@@ -1,0 +1,1 @@
+fn escape<'a>()->&'a i64{let x:i64=1;let a=&x;return a;} fn main(){let a=escape();}

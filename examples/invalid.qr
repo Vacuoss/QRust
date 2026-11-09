@@ -1,0 +1,3 @@
+//Expected error: the control and target operands reference the same qubit
+let q = qubit();
+cx(q, q);

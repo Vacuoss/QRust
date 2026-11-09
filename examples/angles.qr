@@ -1,0 +1,7 @@
+let q = qubit();
+let theta = pi / 8;
+let double_theta = 2 * theta;
+rx(double_theta, q);
+ry(sqrt(2) / 2, q);
+rz(pow(2, 3) / 8, q);
+let bit = measure(q);

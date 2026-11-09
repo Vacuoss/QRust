@@ -1,0 +1,10 @@
+fn main() {
+    let q = qubit();
+    let mut response = measure_keep(q);
+    while response {
+        reset(q);
+        h(q);
+        measure_into(response, q);
+    }
+    x(q);
+}

@@ -1,0 +1,16 @@
+fn main() {
+    let mut first: i64 = 2;
+    let mut second: i64 = 7;
+    let mut third: i64 = 11;
+    let mut reference = &mut first;
+
+    if true {
+        reference = &mut second;
+    } else {
+        reference = &mut third;
+    }
+
+    *reference = 13;
+    let q = qubit();
+    rx(*reference, q);
+}

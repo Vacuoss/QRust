@@ -1,0 +1,9 @@
+fn main() {
+    let q = qubit();
+    let mut feedback = measure_keep(q);
+    while feedback {
+        if feedback {
+            measure_into(feedback, q);
+        }
+    }
+}

@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  verify:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: "1.95.0"
+      - name: Unit and differential tests
+        run: cargo test --quiet
+      - name: Release build
+        run: cargo build --release
+      - name: Validate audit matrix
+        run: python scripts/audit_borrow_rustc.py --validate-only
+      - name: Audit classification self-test
+        run: python scripts/audit_borrow_rustc.py --self-test
+      - name: Rustc differential audit (Unix)
+        if: runner.os != 'Windows'
+        run: python scripts/audit_borrow_rustc.py --qrust target/release/qrust --json target/borrow_audit.json --markdown target/borrow_audit.md
+      - name: Rustc differential audit (Windows)
+        if: runner.os == 'Windows'
+        run: python scripts/audit_borrow_rustc.py --qrust target/release/qrust.exe --json target/borrow_audit.json --markdown target/borrow_audit.md
+      - name: Hybrid regression (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: powershell -ExecutionPolicy Bypass -File scripts/verify_hybrid_0616.ps1

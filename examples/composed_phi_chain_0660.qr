@@ -1,0 +1,17 @@
+struct Blob { n:i64 }
+struct Tri { a:Blob, b:Blob, c:Blob }
+
+fn hop<'a>(x:&'a Blob)->&'a Blob { return x; }
+fn relay<'a>(x:&'a Blob)->&'a Blob { return hop(x); }
+
+fn main() {
+    let t:Tri=Tri{a:Blob{n:1},b:Blob{n:2},c:Blob{n:3}};
+    let r=if true { &t.a } else { &t.b };
+    let s=hop(r);
+    let result=relay(s);
+    let independent:Blob=t.c;
+
+    let q=qubit();
+    rx(result.n,q);
+    ry(independent.n,q);
+}

@@ -1,0 +1,18 @@
+fn main() {
+    let mut a: i64 = 1;
+    let mut b: i64 = 2;
+    let mut c: i64 = 3;
+    let mut r = &mut a;
+
+    match false {
+        true => { r = &mut b; },
+        false => { r = &mut c; }
+    }
+
+    let child = &mut *r;
+    let grandchild = &mut *child;
+    *grandchild = 13;
+
+    let q = qubit();
+    rz(13, q);
+}

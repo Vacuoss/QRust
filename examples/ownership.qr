@@ -1,0 +1,4 @@
+let first = qubit();
+let second = first;
+h(second);
+let result = measure(second);

@@ -1,0 +1,4 @@
+//Expected error: swap uses the same qubit as both operands
+let q = qubit();
+let r = qubit();
+swap(q, q);

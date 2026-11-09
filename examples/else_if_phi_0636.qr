@@ -1,0 +1,15 @@
+fn main() {
+    let mut a: i64 = 1;
+    let mut b: i64 = 2;
+    let mut c: i64 = 3;
+    let mut r = &mut a;
+
+    if true {
+        r = &mut a;
+    } else if false {
+        r = &mut b;
+    } else {
+        r = &mut c;
+    }
+    *r = 12;
+}

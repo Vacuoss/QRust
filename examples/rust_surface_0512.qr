@@ -1,0 +1,19 @@
+fn pulse(q: &mut Qubit, angle: f64) {
+    rz(angle, q);
+}
+
+fn main() {
+    let q = qubit();
+    let mut theta: f64 = 0;
+    for i in 0..=3 {
+        theta += pi / 4;
+        match i {
+            0 => { h(q); },
+            1 => { x(q); },
+            2 => { pulse(&mut q, theta); },
+            _ => { z(q); },
+        }
+    }
+    static_assert_eq(theta, pi);
+    let result = measure(q);
+}

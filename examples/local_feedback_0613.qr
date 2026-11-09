@@ -1,0 +1,7 @@
+let q = qubit();
+x(q);
+let mut feedback = measure_keep(q);
+while feedback {
+    x(q);
+    measure_into(feedback, q);
+}

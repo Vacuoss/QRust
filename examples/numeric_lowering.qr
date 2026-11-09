@@ -1,0 +1,14 @@
+fn spin(q: &mut Qubit, theta: Float) {
+    h(q);
+    rz(sin(theta) + theta / 2, q);
+}
+
+fn main() {
+    let reg = qubits(2);
+    for i in 0..8 {
+        spin(&mut reg[0], (i + 1) * pi / 8);
+        cx(reg[0], reg[1]);
+    }
+    let a = measure(reg[0]);
+    let b = measure(reg[1]);
+}

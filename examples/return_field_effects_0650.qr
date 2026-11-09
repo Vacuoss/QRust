@@ -1,0 +1,16 @@
+struct Pair {left:i64,right:i64}
+fn update<'a>(p:&'a mut Pair)->&'a mut i64 {
+    p.right=7;
+    &mut p.left
+}
+fn forward<'a>(p:&'a mut Pair)->&'a mut i64 {
+    update(p)
+}
+fn main() {
+    let mut p:Pair=Pair{left:1,right:2};
+    let r=forward(&mut p);
+    *r=11;
+    let q=qubit();
+    rx(*r,q);
+    ry(p.right,q);
+}

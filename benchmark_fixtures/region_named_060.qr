@@ -1,0 +1,8 @@
+fn shorten<'a, 'b>(x: &'b i64) -> &'a i64 where 'b: 'a { x }
+fn main() {
+    let n: i64 = 9;
+    let r = shorten(&n);
+    let q = qubit();
+    rx(*r, q);
+    h(q);
+}

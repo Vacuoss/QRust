@@ -1,0 +1,16 @@
+struct Pulse { angle: i64, enabled: bool }
+impl Pulse {
+    fn get(&self) -> i64 { self.angle }
+    fn set(&mut self, value: i64) { self.angle = value; }
+}
+fn read(x: &i64) -> i64 { *x }
+fn change(x: &mut i64, value: i64) { *x = value; }
+fn main() {
+    let mut a: i64 = 7;
+    let r: &i64 = &a;
+    let q = qubit();
+    rx(read(r), q);
+    let mut p: Pulse = Pulse { angle: 1, enabled: true };
+    p.set(9);
+    ry(p.get(), q);
+}

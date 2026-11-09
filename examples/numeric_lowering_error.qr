@@ -1,0 +1,8 @@
+fn pair(a: &mut Qubit, b: &mut Qubit) {
+    cx(a, b);
+}
+fn main() {
+    let q = qubit();
+    let moved = q;
+    pair(&mut moved, &mut moved);
+}

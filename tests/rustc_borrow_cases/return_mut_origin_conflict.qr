@@ -1,0 +1,1 @@
+fn identity<'a>(x:&'a mut i64)->&'a mut i64{x} fn main(){let mut n:i64=3;let r=identity(&mut n);n=5;let q=qubit();rx(*r,q);}

@@ -1,0 +1,33 @@
+fn prepare(q: &mut Qubit, angle: Float) {
+    h(q);
+    rz(angle, q);
+}
+
+fn entangle(a: &mut Qubit, b: &mut Qubit) {
+    cx(a, b);
+}
+
+fn main() {
+    const theta: Float = pi / 4;
+    let reg = qubits(3);
+
+    for i in 0..3 {
+        prepare(&mut reg[i], theta * (i + 1));
+    }
+
+    if theta > 0 {
+        entangle(&mut reg[0], &mut reg[1]);
+    } else {
+        z(reg[2]);
+    }
+
+    {
+        let extra = qubit();
+        h(extra);
+        let result = measure(extra);
+    }
+
+    let result0 = measure(reg[0]);
+    let result1 = measure(reg[1]);
+    let result2 = measure(reg[2]);
+}

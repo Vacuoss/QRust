@@ -1,0 +1,17 @@
+fn select<'a>(first:bool,second:bool,x:&'a i64,y:&'a i64,z:&'a i64)->&'a i64{
+    if first {x} else if second {y} else {z}
+}
+fn relay<'a>(first:bool,second:bool,x:&'a i64,y:&'a i64,z:&'a i64)->&'a i64{
+    select(first,second,x,y,z)
+}
+fn return_from_relay<'a>(first:bool,second:bool,x:&'a i64,y:&'a i64,z:&'a i64)->&'a i64{
+    relay(first,second,x,y,z)
+}
+fn main(){
+    let x:i64=3;
+    let y:i64=11;
+    let z:i64=29;
+    let selected=return_from_relay(false,true,&x,&y,&z);
+    let q=qubit();
+    rx(*selected,q);
+}

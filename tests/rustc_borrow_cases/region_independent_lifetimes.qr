@@ -1,0 +1,1 @@
+fn wrong<'a,'b>(x:&'a i64,y:&'b i64)->&'a i64{y} fn main(){let a:i64=1;let b:i64=2;let r=wrong(&a,&b);let q=qubit();rx(*r,q);}

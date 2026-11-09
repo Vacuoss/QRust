@@ -1,0 +1,25 @@
+struct Blob { n:i64 }
+struct Pair { left:Blob, right:Blob }
+
+fn consume(value:Blob) {}
+fn inspect(value:&Blob) {}
+fn change(value:&mut Blob) { value.n=7; }
+fn forward(value:Blob) { consume(value); }
+
+fn exercise(flag:bool, mut_pair:Pair) {
+    if flag {
+        forward(mut_pair.left);
+    } else {
+        inspect(&mut_pair.left);
+    }
+    inspect(&mut_pair.right);
+}
+
+fn main() {
+    let p:Pair=Pair{left:Blob{n:2},right:Blob{n:4}};
+    exercise(true,p);
+    let mut q:Pair=Pair{left:Blob{n:3},right:Blob{n:5}};
+    change(&mut q.left);
+    let bit=qubit();
+    rx(q.left.n,bit);
+}

@@ -1,0 +1,24 @@
+fn inc(x: &mut i64) {
+    *x += 1;
+}
+
+fn view(x: &i64) -> i64 {
+    *x
+}
+
+fn nested_view(x: &&i64) -> i64 {
+    **x
+}
+
+fn main() {
+    let mut n: i64 = 3;
+    let r: &mut i64 = &mut n;
+    inc(r);
+    inc(r);
+    let value: i64 = view(r);
+    let shared: &i64 = &value;
+    let nested: &&i64 = &shared;
+    let q = qubit();
+    rx(nested_view(nested), q);
+    ry(*r, q);
+}

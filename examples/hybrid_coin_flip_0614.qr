@@ -1,0 +1,17 @@
+fn main() {
+    let n: u32 = input("Number of coin flips: ");
+    let mut heads: u32 = 0;
+    let mut tails: u32 = 0;
+    for i in 0..n {
+        let q = qubit();
+        h(q);
+        if measure(q) == 0 {
+            heads += 1;
+        } else {
+            tails += 1;
+        }
+    }
+    println!("Heads: {}", heads);
+    println!("Tails: {}", tails);
+    println!("Total: {}", heads + tails);
+}

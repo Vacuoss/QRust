@@ -1,0 +1,30 @@
+# id	area	rustc_expect	coverage	rustc_diagnostic_hint	interpretation
+nll_shared_last_use	nll	accept	paired	-	Statement-local last read releases shared loan
+nll_shared_still_live	nll	reject	paired	E0506	Write before last shared use must fail
+nll_mut_last_use	nll	accept	paired	-	Mutable loan released after last access
+nll_mut_still_live	nll	reject	paired	E0506	Owner write before last exclusive reference use
+nll_unused_loan	nll	accept	paired	-	rustc can expire a never-used shared borrow
+reborrow_nested_mut	reborrow	accept	paired	-	Nested exclusive reborrows resume in child-to-parent order
+reborrow_suspended_parent	reborrow	reject	paired	E0506|E0499	Parent cannot be written while exclusive child remains live
+reborrow_shared_child_blocks_parent	reborrow	reject	paired	E0506	Shared reborrow suspends exclusive parent
+reborrow_shared_siblings	reborrow	accept	paired	-	Two sibling shared reborrows can coexist
+fields_disjoint_exclusive	move_path	accept	paired	-	Typed MovePath distinct fields
+fields_overlapping_exclusive	move_path	reject	paired	E0499	Two simultaneously live exclusive borrows of same field
+cfg_diamond_last_use	cfg	accept	paired	-	CFG join follows last use on each predecessor
+cfg_future_shared_use	cfg	reject	paired	E0506	Later reference use on joined path forbids owner mutation
+cfg_loop_future_use	cfg	reject	paired	E0506	Loop back-edge cannot expire an active borrowed owner
+region_escape_local	region	reject	paired	E0515	Returned reference cannot outlive local owner
+region_where_outlives	region	accept	paired	-	Named outlives relation permits safe lifetime shortening
+region_independent_lifetimes	region	reject	paired	lifetime may not live long enough	Unrelated lifetime regions cannot be unified without a bound
+return_shared_phi	return_phi	accept	paired	-	Two alternative shared returned origins
+return_shared_phi_owner_move	return_phi	reject	paired	E0505	Neither possible returned PHI owner may move while reference alive
+return_mut_phi_conditional_write	return_phi	accept	paired	-	Returned mutable PHI through verified field-write callee
+return_mut_origin_conflict	return_phi	reject	paired	E0506	Returned reference retains owner loan through read
+unsupported_two_phase_method	unsupported	accept	rustc_only	-	Two-phase method receiver borrowing and Vec/std not implemented in QRust
+unsupported_closure_capture	unsupported	accept	rustc_only	-	Closure captures and loan inference across captures not supported
+unsupported_hrtb_fn	unsupported	accept	rustc_only	-	Higher-ranked trait bounds and Fn traits not supported
+unsupported_gat	unsupported	accept	rustc_only	-	GAT associated type region constraints require trait solver
+unsupported_async_loan	unsupported	accept	rustc_only	-	Async state machine and borrow across await are outside QRust surface
+unsupported_dropck	unsupported	accept	rustc_only	-	Drop check and user-defined destructor region rules not covered
+unsupported_method_receiver	unsupported	accept	rustc_only	-	Arbitrary impl method receiver lifetimes are not generally supported
+unsupported_box_deref	unsupported	accept	rustc_only	-	Box and deref coercion / heap owner provenance not supported

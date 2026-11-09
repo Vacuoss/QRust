@@ -1,0 +1,8 @@
+struct Payload { value: i64 }
+fn id(x: i64) -> i64 { x }
+fn main() {
+    let a: Payload = Payload { value: 7 };
+    let b: Payload = a;
+    let q = qubit();
+    rz(id(b.value), q);
+}

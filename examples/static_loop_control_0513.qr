@@ -1,0 +1,15 @@
+fn main() {
+    let q = qubit();
+    let mut angle = 0;
+    loop {
+        angle += pi / 8;
+        if angle == pi / 2 { break; }
+        rz(angle, q);
+    }
+    for i in 0..6 {
+        if i % 2 == 0 { continue; }
+        rx(i * pi / 8, q);
+    }
+    static_assert_eq(angle, pi / 2);
+    let outcome = measure(q);
+}

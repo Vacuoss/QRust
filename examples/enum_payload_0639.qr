@@ -1,0 +1,15 @@
+enum Pulse { Idle, Angle(i64), Active(i64, bool) }
+
+fn main() {
+    let state: Pulse = Pulse::Active(17, true);
+    let mut angle: i64 = 0;
+    match state {
+        Pulse::Idle => { angle = 0; },
+        Pulse::Angle(value) => { angle = value; },
+        Pulse::Active(value, enabled) => {
+            if enabled { angle = value; }
+        }
+    }
+    let q = qubit();
+    rx(angle, q);
+}

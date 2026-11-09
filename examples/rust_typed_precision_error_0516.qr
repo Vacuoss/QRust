@@ -1,0 +1,6 @@
+fn id(x: u64) -> u64 { x }
+fn main() {
+    let x: u64 = 9007199254740993;
+    let q = qubit();
+    rz(id(x), q);
+}

@@ -1,0 +1,1 @@
+fn main(){let mut x:i64=1;let r=&x;let y:i64=*r;x=3;}

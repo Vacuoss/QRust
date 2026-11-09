@@ -1,0 +1,16 @@
+struct Pulse { angle: i64, enabled: bool }
+enum Axis { X, Y, Z }
+fn main() {
+    let mut step: u64 = 3;
+    step += 1;
+    let p: Pulse = Pulse { angle: 4, enabled: true };
+    let axis: Axis = Axis::Y;
+    let q = qubit();
+    rz(p.angle, q);
+    match axis {
+        Axis::X => { x(q); },
+        Axis::Y => { h(q); },
+        Axis::Z => { z(q); },
+    }
+    static_assert_eq(step, 4);
+}

@@ -1,0 +1,18 @@
+enum Mode { A, B }
+fn main() {
+    let mut n: i64 = 3;
+    let r: &i64 = &n;
+    let mode: Mode = Mode::B;
+    if true {
+        match mode {
+            Mode::A => {},
+            Mode::B => {
+                let q = qubit();
+                rx(*r, q);
+            }
+        }
+    }
+    n = 9;
+    let q = qubit();
+    ry(n, q);
+}

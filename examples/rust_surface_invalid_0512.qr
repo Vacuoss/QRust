@@ -1,0 +1,2 @@
+//Expected error: the scalar match does not cover all values
+match 3 { 1 => {}, 2 => {} }

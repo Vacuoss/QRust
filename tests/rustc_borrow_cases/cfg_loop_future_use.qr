@@ -1,0 +1,1 @@
+fn main(){let mut x:i64=1;let r=&x;let q=qubit();let mut i:i64=0;while i<2{x=9;rx(*r,q);i+=1;}}

@@ -1,0 +1,8 @@
+//Expected error: two mutable borrows of q in the same call
+fn unsafe_alias(first: &mut Qubit, second: &mut Qubit) {
+    cx(first, second);
+}
+fn main() {
+    let q = qubit();
+    unsafe_alias(&mut q, &mut q);
+}

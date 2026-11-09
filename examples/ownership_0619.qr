@@ -1,0 +1,10 @@
+fn identity<T>(value:T)->T { value }
+fn copy_again<T:Copy>(value:T)->T { let unused=value; value }
+fn borrowed<'a,T>(value:&'a T)->&'a T { value }
+fn choose<T,U>(left:T,right:U)->T { left }
+fn main() {
+    let angle:i64=identity(7);
+    let q=qubit();
+    rx(angle,q);
+    ry(copy_again(3),q);
+}

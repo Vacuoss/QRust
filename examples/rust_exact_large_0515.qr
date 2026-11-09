@@ -1,0 +1,9 @@
+fn main() {
+    let largest: u64 = 18446744073709551615;
+    let smallest: i64 = -9223372036854775808;
+    let almost: u64 = 18446744073709551615 - 1;
+    static_assert_eq(largest, 18446744073709551615);
+    static_assert_ne(largest, almost);
+    let q = qubit();
+    h(q);
+}

@@ -1,0 +1,18 @@
+fn move_alias<'a>(x: &'a mut i64) -> &'a mut i64 {
+    let first = x;
+    let second = first;
+    second
+}
+
+fn reborrow_alias<'a>(x: &'a mut i64) -> &'a mut i64 {
+    let alias = x;
+    &mut *alias
+}
+
+fn main() {
+    let mut angle: i64 = 7;
+    let r = move_alias(&mut angle);
+    *r = 31;
+    let q = qubit();
+    rx(*r, q);
+}

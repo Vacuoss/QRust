@@ -1,0 +1,14 @@
+fn entangle(a: &mut Qubit, b: &mut Qubit, theta: Float) {
+    h(a);
+    cx(a, b);
+    rz(theta / 2, b);
+    ry(sin(theta), a);
+}
+fn main() {
+    let reg = qubits(2);
+    for i in 0..100 {
+        entangle(&mut reg[0], &mut reg[1], i * pi / 100);
+    }
+    let left = measure(reg[0]);
+    let right = measure(reg[1]);
+}

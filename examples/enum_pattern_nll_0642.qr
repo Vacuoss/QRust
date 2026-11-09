@@ -1,0 +1,22 @@
+enum State {
+    Value(i64),
+    Empty
+}
+
+fn main() {
+    let mut state: State = State::Value(2);
+    let q = qubit();
+
+    match &mut state {
+        State::Value(ref mut number) => {
+            *number = 5;
+            state = State::Value(9);
+        },
+        State::Empty => {}
+    }
+
+    match state {
+        State::Value(value) => { rx(value, q); },
+        State::Empty => {}
+    }
+}

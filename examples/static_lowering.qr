@@ -1,0 +1,14 @@
+fn pulse(q: &mut Qubit, theta: Float, enabled: Bool) {
+    static_assert(theta >= 0);
+    if enabled { rx(theta, q); }
+    else { z(q); }
+}
+fn main() {
+    let reg = qubits(4);
+    for i in 0..4 {
+        pulse(&mut reg[i], (i + 1) * pi / 8, i % 2 == 0);
+    }
+    for i in 0..4 {
+        let bit = measure(reg[i]);
+    }
+}

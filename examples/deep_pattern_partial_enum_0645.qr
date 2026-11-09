@@ -1,0 +1,23 @@
+struct Payload { n: i64 }
+enum Inner { Data(Payload) }
+enum Outer { Wrap(Inner) }
+enum Pair { Both(Payload, Payload) }
+
+fn main() {
+    let p: Payload = Payload { n: 5 };
+    let inner: Inner = Inner::Data(p);
+    let mut outer: Outer = Outer::Wrap(inner);
+    match &mut outer {
+        Outer::Wrap(Inner::Data(Payload { n: ref mut x })) => {
+            *x = 7;
+            outer = Outer::Wrap(Inner::Data(Payload { n: 9 }));
+        },
+        _ => {}
+    }
+    let a: Payload = Payload { n: 2 };
+    let b: Payload = Payload { n: 3 };
+    let pair: Pair = Pair::Both(a, b);
+    let q = qubit();
+    match pair { Pair::Both(left, _) => { rx(left.n, q); } }
+    match pair { Pair::Both(_, right) => { ry(right.n, q); } }
+}

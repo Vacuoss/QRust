@@ -1,0 +1,19 @@
+struct Blob { n:i64 }
+struct Tri { a:Blob, b:Blob, c:Blob }
+fn choose<'a>(flag:bool, t:&'a Tri)->&'a Blob {
+    if flag { &t.a } else { &t.b }
+}
+fn relay<'a>(flag:bool, t:&'a Tri)->&'a Blob {
+    return choose(flag,t);
+}
+fn top<'a>(flag:bool, t:&'a Tri)->&'a Blob {
+    relay(flag,t)
+}
+fn main() {
+    let t:Tri=Tri{a:Blob{n:2},b:Blob{n:4},c:Blob{n:6}};
+    let r=top(false,&t);
+    let spare:Blob=t.c;
+    let q=qubit();
+    rx(r.n,q);
+    ry(spare.n,q);
+}
