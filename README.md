@@ -1,5 +1,6 @@
 # QRust
 **VERY EARLY RAW TEST LAGUAGE EVERYTHING CAN CHANGE IN FUTURE**
+
 **QRust is an experimental quantum programming language** compiler written in Rust. It provides a quantum language frontend, a Rust-inspired static ownership system for supported constructs, OpenQASM 3 output, a QCU interchange format, and local execution tools.
 
 **Status:** experimental test release, version `0.6.91-borrow-checker-architecture-validation-preview.1.fix.1`. QRust is not a Rust compiler, a `rustc` replacement, or a formally verified borrow checker. Hardware execution requires an external backend adapter.
